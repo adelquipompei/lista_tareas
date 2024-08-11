@@ -3,7 +3,11 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 
 
-function Tarea({ tarea,nuevaTarea }) {
+function Tarea({ tarea,toggleCompletada }) {
+    
+    
+
+
     
    
     const arraytarea = [tarea]
@@ -18,14 +22,8 @@ function Tarea({ tarea,nuevaTarea }) {
     }
 
 
-    const toggleTarea = (id) => {
-        console.log(id)
-        nuevaTarea(
-          tarea.map(t => {
-                tarea.id === id ? {...t,completada:!t.completada} : t;
-            })
-        )
-    }
+
+
 
 
 
@@ -34,7 +32,7 @@ function Tarea({ tarea,nuevaTarea }) {
         <>
             <li className='lista-container animate__animated animate__fadeIn'>
                 <div style={{display:'flex',alignItems:'center',width:'100%'}}>
-                    <FontAwesomeIcon style={{fontSize:'15px'}} onClick={() => toggleTarea(tarea.id)} icon={tarea.completada ? faCheckSquare : faSquare} className='lista-tareas__icono' />
+                    <FontAwesomeIcon style={{fontSize:'15px'}} onClick={() => toggleCompletada(tarea.id)} icon={tarea.completada ? faCheckSquare : faSquare} className='lista-tareas__icono' />
                     {
                         editarTarea ? 
                         <form action="" style={{display:'flex'}} onSubmit={handleSubmit} >
