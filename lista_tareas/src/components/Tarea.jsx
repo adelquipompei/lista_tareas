@@ -3,31 +3,16 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import React, { useEffect, useState } from 'react'
 
 
-function Tarea({ tarea,toggleCompletada }) {
-    
-    
-
-
-    
-   
-    const arraytarea = [tarea]
+function Tarea({ tarea,editTarea,toggleCompletada,borrarTarea }) {
     const [editarTarea,setEditarTarea] = useState(false)
-    const [completada,setCompletada] = useState(false);
+    const [newTask, setNewTask] = useState(tarea.texto)
     
-
     const handleSubmit = (e) => {
         e.preventDefault();
+        editTarea(tarea.id,newTask);
         setEditarTarea(false)
-
     }
 
-
-
-
-
-
-
-    
     return (
         <>
             <li className='lista-container animate__animated animate__fadeIn'>
@@ -36,15 +21,15 @@ function Tarea({ tarea,toggleCompletada }) {
                     {
                         editarTarea ? 
                         <form action="" style={{display:'flex'}} onSubmit={handleSubmit} >
-                            <input type="text" placeholder={tarea.texto} className='input-editar animate__animated animate__fadeIn animate__faster ' />
-                            <button type='submit' className='btn-actualizar'>Actualizar</button>
+                            <input type="text"  value={newTask} onChange={(e) => setNewTask(e.target.value)} className='input-editar animate__animated animate__fadeIn animate__faster ' />
+                            <button type='submit'  className='btn-actualizar'>Actualizar</button>
                         </form> :
                         tarea.texto
                     }
                 </div>
                 <div className='editar-eliminar animate__animated animate__fadeIn animate__faster'>
                     <FontAwesomeIcon onClick={(e) => setEditarTarea(!editarTarea)} icon={faEdit} className='lista-tareas__icono ' style={{color: 'gray'}} />
-                    <FontAwesomeIcon icon={faTimes} className='lista-tareas__icono' style={{color: 'gray'}} />
+                    <FontAwesomeIcon icon={faTimes} className='lista-tareas__icono' style={{color: 'gray'}} onClick={() => borrarTarea(tarea.id)} />
                 </div>
             </li>
         </>

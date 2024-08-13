@@ -8,6 +8,7 @@ import '../node_modules/animate.css/animate.css'
 function App() {
 
   const [tareas, nuevaTarea] = useState([]);
+  const [showTaskComplete , setShowTaskComplete ] = useState(false);
 
 
 
@@ -16,7 +17,7 @@ function App() {
 
       <Header />
       <FormularioTareas tareas={tareas} nuevaTarea={nuevaTarea} />
-      <ListaTareas tareas={tareas} nuevaTarea={nuevaTarea}  />
+      <ListaTareas tareas={tareas} nuevaTarea={nuevaTarea} showTaskComplete={showTaskComplete} />
 
 
 
