@@ -1,14 +1,18 @@
 import './App.css'
 import FormularioTareas from './components/FormularioTareas'
 import Header from './components/Header'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import ListaTareas from './components/ListaTareas';
 import '../node_modules/animate.css/animate.css'
 
 function App() {
-
-  const [tareas, nuevaTarea] = useState([]);
+  const tareasGuardadas = localStorage.getItem('tareas') ? JSON.parse(localStorage.getItem('tareas')) : []; 
+  const [tareas, nuevaTarea] = useState(tareasGuardadas);
   const [showTaskComplete , setShowTaskComplete ] = useState(false);
+
+  useEffect(()=> {
+    localStorage.setItem('tareas', JSON.stringify(tareas))
+  },[tareas])
 
 
 
